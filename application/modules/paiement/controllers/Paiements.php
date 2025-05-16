@@ -153,7 +153,7 @@ function Add(){
 
 	$data['cate'] = $this->Model->getRequete('SELECT `ID_CATEGORIE`,`NOM_CATEGORIE` FROM `categorie_meuble` WHERE 1 order BY NOM_CATEGORIE ASC');
 
-	$this->load->view('Add_Appartement_View',$data);
+	$this->load->view('flutterwave/Add_Paiement');
 
 }
 

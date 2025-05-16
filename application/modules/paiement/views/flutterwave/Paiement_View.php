@@ -28,8 +28,8 @@
               <div class="col-lg-6">
 
                 <ul class="nav nav-pills nav-fill justify-content-around rounded shadow m-4">
-                  <li class="nav-item"><a class="nav-link <?php if(in_array($this->router->method,['insert'])) echo 'active';?>"  href="<?=base_url('paiement/Paiements//Add/')?>"><i class="fa fa-pencil-square-o"></i>Nouveau</a></li>
-                  <li class="nav-item"><a class="nav-link <?php if(in_array($this->router->method,['index'])) echo 'active';?>" href="<?=base_url('paiement/Paiements//')?>"><i class="fa fa-list"></i>Liste</a></li>
+                  <li class="nav-item"><a class="nav-link <?php if(in_array($this->router->method,['insert'])) echo 'active';?>"  href="<?=base_url('paiement/Paiements/Add/')?>"><i class="fa fa-pencil-square-o"></i>Nouveau</a></li>
+                  <li class="nav-item"><a class="nav-link <?php if(in_array($this->router->method,['index'])) echo 'active';?>" href="<?=base_url('paiement/Paiements/')?>"><i class="fa fa-list"></i>Liste</a></li>
                 </ul>
               </div>
               

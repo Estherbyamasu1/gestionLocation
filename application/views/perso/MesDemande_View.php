@@ -146,7 +146,7 @@
       function Liste_mesdemande()
       {
 
-        // alert()
+        alert()
         var row_count ="1000000";
         
         $("#mytable1").DataTable(

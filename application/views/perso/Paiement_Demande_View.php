@@ -108,6 +108,7 @@
                       <th>MONTANT</th>
                       <th>MODE</th>
                       <th>STATUT</th>
+                      <th>PHOTO MEUBLE</th>
                       <th>ACTION</th>
 
                     </tr>
@@ -148,7 +149,7 @@
       function liste_doc()
       {
 
-        alert()
+        // alert()
         var row_count ="1000000";
         
         $("#mytable").DataTable(
@@ -157,7 +158,7 @@
           "serverSide":true,
           "oreder":[[ 0, 'desc' ]],
           "ajax":{
-            url:"<?=base_url()?>perso/liste_paiement",
+            url:"<?=base_url()?>Perso/liste_paiement",
             type:"POST"
         },
         lengthMenu: [[10,50, 100, row_count], [10,50, 100, "All"]],
