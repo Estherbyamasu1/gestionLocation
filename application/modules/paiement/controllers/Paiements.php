@@ -21,7 +21,7 @@ class Paiements extends CI_Controller
 		//fonction liste
 	function listing()
 	{
-		$query_principal="SELECT paiement.ID_PAIEMENT,paiement.MONTANT as montant_paye,paiement.MODE_PAIEMENT,paiement.RESERVATION_ID,paiement.STATUT_PAIEMENT,paiement.DATE_PAIEMENT,reservation.MEUBLE_ID,reservation.ID_LOCATAIRE,meuble.NOM_MEUBLE,meuble.NUMERO_MEUBLE,locataire.NOM_LOCATAIRE,locataire.PRENOM_LOCATAIRE,locataire.TELEPHONE,locataire.EMAIL as locat_email FROM `paiement` JOIN reservation ON reservation.RESERVATION_ID=paiement.RESERVATION_ID LEFT JOIN meuble ON reservation.MEUBLE_ID=meuble.ID_MEUBLE LEFT JOIN locataire ON locataire.ID_LOCATAIRE=reservation.ID_LOCATAIRE WHERE 1";
+		$query_principal="SELECT paiement.ID_PAIEMENT,paiement.MONTANT as montant_paye,paiement.MODE_PAIEMENT,paiement.RESERVATION_ID,paiement.STATUT_PAIEMENT,paiement.DATE_PAIEMENT,reservation.MEUBLE_ID,reservation.ID_LOCATAIRE,meuble.NOM_MEUBLE,meuble.NUMERO_MEUBLE,locataire.NOM_LOCATAIRE,locataire.PRENOM_LOCATAIRE,locataire.TELEPHONE,locataire.EMAIL as locat_email,paiement.IMAGE_RECU FROM `paiement` JOIN reservation ON reservation.RESERVATION_ID=paiement.RESERVATION_ID LEFT JOIN meuble ON reservation.MEUBLE_ID=meuble.ID_MEUBLE LEFT JOIN locataire ON locataire.ID_LOCATAIRE=reservation.ID_LOCATAIRE WHERE 1";
 
 		$var_search= !empty($_POST['search']['value']) ? $_POST['search']['value'] : null;
 
@@ -94,7 +94,7 @@ class Paiements extends CI_Controller
         </button>
       </div>
       <div class="modal-body">
-          <div class="col-md-12"><embed src="' . base_url('uploads/doc_meuble/' . $info->IMAGE_MEUBLE) . '" type="application/pdf"   scrolling="auto" height="400px" width="100%"></div>
+          <div class="col-md-12"><embed src="' . base_url('uploads/doc_meuble/' . $info->IMAGE_RECU) . '" type="application/pdf"   scrolling="auto" height="400px" width="100%"></div>
 
      </div>
 
@@ -155,6 +155,72 @@ function Add(){
 
 	$this->load->view('flutterwave/Add_Paiement');
 
+}
+
+
+
+
+public function paiement_local()
+{
+  $json = json_decode(file_get_contents('php://input'), true);
+  $mode = $json['mode_paiement'];
+  $montant = $json['montant'];
+  $locataire_id = $this->session->userdata('LOCATAIRE_ID');
+
+  // Traitement simulé du paiement local (Airtel ou Mvola)
+  // Tu peux intégrer ici l’API d’opérateurs mobiles si tu en as une
+
+  // Exemple de sauvegarde dans la base
+  $data = [
+    'MONTANT' => $montant,
+    'MODE_PAIEMENT' => $mode == 'mvola' ? 1 : 2,
+    'STATUT_PAIEMENT' => 1, // payé
+    'DATE_PAIEMENT' => date('Y-m-d H:i:s'),
+    'RESERVATION_ID' => 0, // À adapter si tu as une réservation spécifique
+    'ID_LOCATAIRE' => $locataire_id
+  ];
+
+  $this->Model->create('paiement', $data);
+
+  echo json_encode(['status' => 'success', 'message' => 'Paiement local effectué avec succès.']);
+}
+
+
+public function confirmation_flutterwave()
+{
+  $transaction_id = $this->input->get('ref');
+  
+  // Appelle l'API de Flutterwave pour confirmer le paiement
+  $curl = curl_init();
+
+  curl_setopt_array($curl, array(
+    CURLOPT_URL => "https://api.flutterwave.com/v3/transactions/$transaction_id/verify",
+    CURLOPT_RETURNTRANSFER => true,
+    CURLOPT_HTTPHEADER => array(
+      "Authorization: Bearer FLWSECK_TEST-XXXXXXXXX"
+    ),
+  ));
+
+  $response = curl_exec($curl);
+  curl_close($curl);
+  $response = json_decode($response);
+
+  if ($response && $response->status == 'success') {
+    // Sauvegarde dans ta base
+    $data = [
+      'MONTANT' => $response->data->amount,
+      'MODE_PAIEMENT' => 3, // Flutterwave
+      'STATUT_PAIEMENT' => 1,
+      'DATE_PAIEMENT' => date('Y-m-d H:i:s'),
+      'RESERVATION_ID' => 0,
+      'ID_LOCATAIRE' => $this->session->userdata('LOCATAIRE_ID')
+    ];
+    $this->Model->create('paiement', $data);
+
+    redirect('perso'); // rediriger vers la liste des paiements
+  } else {
+    echo "Paiement non vérifié.";
+  }
 }
 
 

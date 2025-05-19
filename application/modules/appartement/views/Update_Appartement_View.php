@@ -103,6 +103,11 @@
                     <span class="text-danger"><?php echo form_error("MONTANT");?></span>
                   </div>
                   <div class="col-md-6">
+                    <span class="label-input100"><b>Nombre chambre</b></span>
+                    <input type="number" name="NOMBRE_CHAMBRE" id="NOMBRE_CHAMBRE"  value="<?php echo $meuble['NOMBRE_CHAMBRE']?>" class="form-control">
+                    <span class="text-danger"><?php echo form_error("NOMBRE_CHAMBRE");?></span>
+                  </div>
+                  <div class="col-md-6">
                     <span class="label-input100"><b>Adresse</b></span>
                     <input type="text" name="ADRESSE" id="ADRESSE"  value="<?php echo $meuble['ADRESSE']?>" class="form-control">
                     <span class="text-danger"><?php echo form_error("ADRESSE");?></span>

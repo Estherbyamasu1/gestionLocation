@@ -49,6 +49,7 @@
                       <th>MONTANT</th>
                       <th>MODE</th>
                       <th>STATUT</th>
+                      <th>QUITTANCE</th>
                       <th>ACTION</th>
 
                     </tr>

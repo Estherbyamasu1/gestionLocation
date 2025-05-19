@@ -97,12 +97,17 @@
                   </div>
                 </div>
                 <div class="row">
-                  <div class="col-md-6">
+                  <div class="col-md-4">
                     <span class="label-input100"><b>Montant</b><font color="red" >*</font></span>
                     <input type="number" name="MONTANT" id="MONTANT"  value="<?=set_value('MONTANT');?>" class="form-control">
                     <span class="text-danger"><?php echo form_error("MONTANT");?></span>
                   </div>
-                  <div class="col-md-6">
+                  <div class="col-md-4">
+                    <span class="label-input100"><b>Nombre chambre</b></span>
+                    <input type="number" name="NOMBRE_CHAMBRE" id="NOMBRE_CHAMBRE"  value="<?=set_value('NOMBRE_CHAMBRE');?>" class="form-control">
+                    <span class="text-danger"><?php echo form_error("NOMBRE_CHAMBRE");?></span>
+                  </div>
+                  <div class="col-md-4">
                     <span class="label-input100"><b>Adresse</b></span>
                     <input type="text" name="ADRESSE" id="ADRESSE"  value="<?=set_value('ADRESSE');?>" class="form-control">
                     <span class="text-danger"><?php echo form_error("ADRESSE");?></span>

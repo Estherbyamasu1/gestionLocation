@@ -23,9 +23,9 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
 
-  <link rel="shortcut icon" href="<?=base_url()?>assets/img/favicon-16x16.png" type="image/x-icon">
+  <link rel="shortcut icon" href="<?=base_url()?>logo/png_logo.png" type="image/x-icon">
 
-  <link rel="icon" href="<?=base_url()?>assets/img/favicon-16x16.png" type="image/x-icon">
+  <link rel="icon" href="<?=base_url()?>logo/png_logo.png" type="image/x-icon">
 
   <script src="<?=base_url()?>assets/js/jquery-3.6.0.js"></script>
 

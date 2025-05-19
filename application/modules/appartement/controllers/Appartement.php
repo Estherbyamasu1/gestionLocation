@@ -155,6 +155,10 @@ function Add(){
    $NUMERO_MEUBLE = $this->input->post('NUMERO_MEUBLE');
    $MONTANT = $this->input->post('MONTANT');
    $ADRESSE = $this->input->post('ADRESSE');
+   $NOMBRE_CHAMBRE = $this->input->post('NOMBRE_CHAMBRE');
+
+
+   $this->form_validation->set_rules('NOMBRE_CHAMBRE', '', 'trim|required', array('required' => '<font style="color:red;size:2px;">Le champ est Obligatoire</font>'));
     
  // print_r($IMAGE_MEUBLE);die();
    $this->form_validation->set_rules('ID_CATEGORIE', '', 'trim|required', array('required' => '<font style="color:red;size:2px;">Le champ est Obligatoire</font>'));
@@ -203,7 +207,7 @@ function Add(){
 
     	if(empty($check)){
 
-             $this->Model->create('meuble', array('ID_CATEGORIE' => $ID_CATEGORIE,'NOM_MEUBLE' => $NOM_MEUBLE,'NUMERO_MEUBLE' => $NUMERO_MEUBLE,'MONTANT' => $MONTANT,'ADRESSE' => $ADRESSE,'IMAGE_MEUBLE'=>$IMAGE_MEUBLE,'STATUT'=>1));
+             $this->Model->create('meuble', array('ID_CATEGORIE' => $ID_CATEGORIE,'NOM_MEUBLE' => $NOM_MEUBLE,'NUMERO_MEUBLE' => $NUMERO_MEUBLE,'MONTANT' => $MONTANT,'ADRESSE' => $ADRESSE,'IMAGE_MEUBLE'=>$IMAGE_MEUBLE,'STATUT'=>1,'NOMBRE_CHAMBRE'=>$NOMBRE_CHAMBRE));
 
     		 $data['message'] = '<div  style="height:3em;border-radius:10px;padding-top:0.5em; width:80%;margin-left:5em" id="message" class=" btn btn-success">' . "Enregistrement effectuée avec succès!!" . '</div>';
            $this->session->set_flashdata($data);
@@ -238,6 +242,10 @@ function update(){
    $NUMERO_MEUBLE = $this->input->post('NUMERO_MEUBLE');
    $MONTANT = $this->input->post('MONTANT');
    $ADRESSE = $this->input->post('ADRESSE');
+   $NOMBRE_CHAMBRE = $this->input->post('NOMBRE_CHAMBRE');
+
+
+   $this->form_validation->set_rules('NOMBRE_CHAMBRE', '', 'trim|required', array('required' => '<font style="color:red;size:2px;">Le champ est Obligatoire</font>'));
     
  // print_r($IMAGE_MEUBLE);die();
    $this->form_validation->set_rules('ID_CATEGORIE', '', 'trim|required', array('required' => '<font style="color:red;size:2px;">Le champ est Obligatoire</font>'));
@@ -286,7 +294,7 @@ function update(){
 
     	if(empty($check)){
 
-             $this->Model->update('meuble', array('ID_MEUBLE' => $ID_MEUBLE), array('ID_CATEGORIE' => $ID_CATEGORIE,'NOM_MEUBLE' => $NOM_MEUBLE,'NUMERO_MEUBLE' => $NUMERO_MEUBLE,'MONTANT' => $MONTANT,'ADRESSE' => $ADRESSE,'IMAGE_MEUBLE'=>$IMAGE_MEUBLE));
+             $this->Model->update('meuble', array('ID_MEUBLE' => $ID_MEUBLE), array('ID_CATEGORIE' => $ID_CATEGORIE,'NOM_MEUBLE' => $NOM_MEUBLE,'NUMERO_MEUBLE' => $NUMERO_MEUBLE,'MONTANT' => $MONTANT,'ADRESSE' => $ADRESSE,'IMAGE_MEUBLE'=>$IMAGE_MEUBLE,'NOMBRE_CHAMBRE'=>$NOMBRE_CHAMBRE));
 
     		 $data['message'] = '<div  style="height:3em;border-radius:10px;padding-top:0.5em; width:80%;margin-left:5em" id="message" class=" btn btn-success">' . "Modification effectuée avec succès!!" . '</div>';
            $this->session->set_flashdata($data);
