@@ -177,6 +177,13 @@ function traite_ticket()
 
       $this->Model->update('reservation',array('RESERVATION_ID'=>$RESERVATION_ID),array('STATUT_RESERVATION'=>$ID_STATUT_RESERVATION));
 
+      $data = $this->Model->getOne('reservation', array('RESERVATION_ID' => $RESERVATION_ID));
+
+      if($ID_STATUT_RESERVATION==2){
+
+         $this->Model->update('meuble',array('ID_MEUBLE'=>$data['MEUBLE_ID']),array('STATUT'=>2));
+      }
+
     
       // if($ID_STATUT_RESERVATION==2){
 
