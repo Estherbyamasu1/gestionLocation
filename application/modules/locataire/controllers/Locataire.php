@@ -4,10 +4,19 @@ class Locataire extends CI_Controller
 {
 	
 	function __construct()
-	{  
-		
-		parent::__construct();  
-	}
+  {  
+    
+    parent::__construct(); 
+    $this->is_auth(); 
+  }
+  
+  public function is_auth()
+  {
+    if (empty($this->session->userdata('USER_ID'))) {
+      redirect(base_url('Login'));
+    }
+  }
+
 	function index()
 	{
 
@@ -339,12 +348,12 @@ function traite_ticket()
 
     $demande_email=$this->Model->getOne('locataire', array('ID_LOCATAIRE' =>$ID_LOCATAIRE));
 // print_r($ID_LOCATAIRE);die();
-   
+   $pass=$this->notifications->generate_password(5);
     $this->Model->create('historique_locataire_demande',array('USER_ID'=>$user,'STATUT_ID'=>$ID_STATUT_DEMANDE,'ID_LOCATAIRE'=>$ID_LOCATAIRE,'COMMENTAIRE'=>$COMMENTAIRE,'DATE_INSERTION'=>date('Y-m-d H:i:s')));
 
-      $this->Model->update('locataire',array('ID_LOCATAIRE'=>$ID_LOCATAIRE),array('STATUT'=>$ID_STATUT_DEMANDE));
+      $this->Model->update('locataire',array('ID_LOCATAIRE'=>$ID_LOCATAIRE),array('STATUT'=>$ID_STATUT_DEMANDE,'PASSWORD'=>$pass));
 
-    $pass=$this->notifications->generate_password(5);
+    
       if($ID_STATUT_DEMANDE==2){
 
          $to=$demande_email['EMAIL'];
@@ -352,7 +361,7 @@ function traite_ticket()
         $message = "chère <b>".$demande_email['NOM_LOCATAIRE']."</b>,<br>Voici vos identifiant: <br><br> Email :".$to.",<br>Mot de passe:".$to.",<br><br>  Merci cordialement.
         </b>";
       
-       $this->notifications->send_mail($to, $subject, [], $message, []);
+       // $this->notifications->send_mail($to, $subject, [], $message, []);
       }
    
 

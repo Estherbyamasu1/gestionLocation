@@ -11,9 +11,16 @@ class Menu_Etape_Profil extends MY_Controller
 {
 
   function __construct()
+  {  
+    
+    parent::__construct(); 
+    $this->is_auth(); 
+  }
+  public function is_auth()
   {
-
-    parent::__construct();
+    if (empty($this->session->userdata('USER_ID'))) {
+      redirect(base_url('Login'));
+    }
   }
 
  //la fonction qui affiche le view

@@ -7,13 +7,13 @@
 
     <meta name="description" content="E-visa Burundi">
 
-    <meta name="keywords" content="e-visa Burundi, procédure visa Burundi,formulaire visa Burundi, visa Burundi, evisa Burundi, CGM Burundi, commissariat général des migrations Burundi, visa étudiant Burundi ">
+    <meta name="keywords" content="">
 
-    <meta name="author" content="Mediabox Burundi">
+    
 
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-  <meta name="copyright" content="Mediabox Burundi, https://mediabox.bi/">
+  <meta name="copyright" content="Furaha byamasu Esther, http://localhost/gestion_meuble/">
       <!-- site metas -->
 <!--       <title>Connexion | Commissariat Général des Migrations</title> -->
 <link rel="icon" type="image/png" sizes="16x16" href="<?= base_url() ?>logo/png_logo.png">

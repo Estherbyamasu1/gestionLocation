@@ -15,6 +15,13 @@ class Login extends CI_Controller
 		$this->load->view('Login_view', $datas);
 	}
 
+	public function is_auth()
+  {
+    if (empty($this->session->userdata('USER_ID'))) {
+      redirect(base_url('Login'));
+    }
+  }
+
 	function check_login()
 	{
 		$this->_validate();
@@ -104,10 +111,10 @@ class Login extends CI_Controller
 
 					if ($this->session->userdata('CODE_ROLE')=="super_admin") 
 					{
-						redirect(base_url('appartement/Appartement'));
+						redirect(base_url('rapport/Dashboard_Reservation'));
 
 					}else{
-						redirect(base_url('appartement/Appartement'));
+						redirect(base_url('rapport/Dashboard_Reservation'));
 					}
 					
 
@@ -138,19 +145,21 @@ class Login extends CI_Controller
 
 	{
 
-		$session=array('USER_ID'=>NULL,
-		                'NOM_USER'=>NULL,
-						'PRENOM_USER'=>NULL,
-						'EMAIL'=>NULL,
-						'IS_ACTIVE'=>NULL,
-						'ROLE_ID'=>NULL,
-						'CODE_ROLE'=>NULL,
-					    'SEXE_ID'=>NULL
+		// $session=array('USER_ID'=>NULL,
+		//                 'NOM_USER'=>NULL,
+		// 				'PRENOM_USER'=>NULL,
+		// 				'EMAIL'=>NULL,
+		// 				'IS_ACTIVE'=>NULL,
+		// 				'ROLE_ID'=>NULL,
+		// 				'CODE_ROLE'=>NULL,
+		// 			    'SEXE_ID'=>NULL
 			
-		);
-		$this->session->unset_userdata($session);
+		// );
+		session_destroy();
+
+		// $this->session->unset_userdata($session);
 		
-		redirect(base_url());
+		redirect(base_url('Login'));
 	}
 
 	

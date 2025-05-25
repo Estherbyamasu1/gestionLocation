@@ -171,7 +171,7 @@
                     <div class="row">
                         <div class="col-md-12">
                           <span class="label-input100"><b>Photo passeport</b><font color="red" >*</font></span>
-                          <input type="text" name="IMAGE_LOCATAIRE" id="IMAGE_LOCATAIRE"  value="<?=set_value('IMAGE_LOCATAIRE');?>" class="form-control">
+                          <input type="file" name="IMAGE_LOCATAIRE" id="IMAGE_LOCATAIRE"  value="<?=set_value('IMAGE_LOCATAIRE');?>" class="form-control">
                           <span class="text-danger"><?php echo form_error("IMAGE_LOCATAIRE");?></span>
                         </div>
                        

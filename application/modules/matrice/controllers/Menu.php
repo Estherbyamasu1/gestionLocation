@@ -13,9 +13,16 @@ class Menu extends CI_Controller
 {
 
   function __construct()
+  {  
+    
+    parent::__construct(); 
+    $this->is_auth(); 
+  }
+  public function is_auth()
   {
-
-    parent::__construct();
+    if (empty($this->session->userdata('USER_ID'))) {
+      redirect(base_url('Login'));
+    }
   }
 
   function index()

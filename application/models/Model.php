@@ -16,6 +16,40 @@ class Model extends CI_Model{
       
     }
 
+
+    public function insert_quartier_return_id($data)
+    {
+        $this->db->insert('quartier_avenue', $data);
+        if ($this->db->affected_rows() > 0) {
+            return $this->db->insert_id();
+        }
+        return false;
+    }
+
+    // Insérer une avenue
+    public function insert_avenue($data)
+    {
+        return $this->db->insert('avenue', $data);
+    }
+
+
+     public function getAll($table) {
+        return $this->db->get($table)->result();
+    }
+
+    public function getMeublesFiltered($id_quartier = null, $id_avenue = null) {
+    $this->db->select('ID_MEUBLE,NOM_MEUBLE,NUMERO_MEUBLE,MONTANT,ID_CATEGORIE,ADRESSE,STATUT,IMAGE_MEUBLE,NOMBRE_CHAMBRE,ID_USER,LATITUDE,LONGITUDE,ID_QUARTIER,ID_AVENUE');
+    $this->db->from('meuble');
+    if(!empty($id_quartier)) {
+        $this->db->where('ID_QUARTIER', $id_quartier);
+    }
+    if(!empty($id_avenue)) {
+        $this->db->where('ID_AVENUE', $id_avenue);
+    }
+    $query = $this->db->get();
+    return $query->result_array();
+}
+
     
 
     function calcule_distance($point1,$point2,$unite="km",$precision=2) {

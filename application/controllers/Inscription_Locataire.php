@@ -86,10 +86,10 @@ function ajouter(){
 
          $data['message'] = '<div  style="height:3em;border-radius:10px;padding-top:0.5em; width:80%;margin-left:5em" id="message" class=" btn btn-success">' . "Enregistrement effectuée avec succès!!" . '</div>';
            $this->session->set_flashdata($data);
-          redirect(base_url('locataire/Locataire'));
+          redirect(base_url('Inscription_Locataire'));
 
       }else{
-             $data['message'] = '<div  style="height:3em;border-radius:10px;padding-top:0.5em; width:80%;margin-left:5em" id="message" class=" btn btn-success">' . "La categorie existe deja!!" . '</div>';
+             $data['message'] = '<div  style="height:3em;border-radius:10px;padding-top:0.5em; width:80%;margin-left:5em" id="message" class=" btn btn-success">' . "Le client existe deja!!" . '</div>';
              $this->session->set_flashdata($data);
           redirect(base_url('Inscription_Locataire'));
       }

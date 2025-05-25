@@ -6,7 +6,8 @@ class Users extends CI_Controller
 	function __construct()
 	{  
 		
-		parent::__construct();  
+		parent::__construct(); 
+        $this->is_auth(); 
 	}
 	function index()
 	{

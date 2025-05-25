@@ -39,6 +39,7 @@ class Login_Front extends CI_Controller
 
     $username=$this->input->post('inputUsername');
     $password=$this->input->post('inputPassword');
+    // print_r($password);die();
 
     $user=$this->Model->getOne('locataire',array('EMAIL'=>$username));
 
@@ -78,6 +79,18 @@ class Login_Front extends CI_Controller
   }
 }
 }
+
+ public function do_logout(){
+
+  session_destroy();
+
+    // $this->session->unset_userdata($session);
+    
+    redirect(base_url("Login_Front"));
+ }
+
+
+
   }
   
   

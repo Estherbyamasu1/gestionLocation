@@ -15,7 +15,7 @@
 
   <meta name="copyright" content="Mediabox Burundi, https://mediabox.bi/">
       <!-- site metas -->
-      <title>Connexion | Commissariat Général des Migrations</title>
+      <title>Location Express Goma</title>
 
       <!-- site icon -->
      <link rel="icon" type="image/png" sizes="16x16" href="<?= base_url() ?>logo/png_logo.png">
